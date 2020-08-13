@@ -68,12 +68,14 @@ export default class CheckOutEmployee extends React.Component{
             // return <Redirect to={{pathname:this.state.redirect,state:this.state}} />
         }
         return(
-            <div>
+            <div className="">
 
                 <div className="text-center">
                     <h4>Select Slot</h4>
                 </div>
                 <br/>
+                <div className="d-flex align-items-center justify-content-center">
+                <form>
                 <select
                     name="country"
                     onChange={this.handleCountryChange.bind(this)}
@@ -107,7 +109,8 @@ export default class CheckOutEmployee extends React.Component{
                     {this.state.lots.map(
                         lot=><option key={`lot_${lot.id}`} value={lot.id}>{lot.name}</option>
                     )}
-                </select>
+                </select></form>
+                </div>
                 <div className="d-flex align-items-center justify-content-center">
                     <br/>
                     <div className="row p-2">

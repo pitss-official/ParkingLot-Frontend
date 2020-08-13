@@ -70,24 +70,25 @@ export default class AllocateSpot extends React.Component{
         }
         return(
             <div>
-
                 <div className="text-center">
                     <h4>Select Slot</h4>
                 </div>
-                <input
-                    required={true}
-                    type="text"
-                    className="p-2 text-uppercase text-center rounded-pill"
-                    style={{minWidth:'250px'}}
-                    placeholder="ENTER VEHICLE NUMBER"
-                    value={this.state.vehicleNumber}
-                    onChange={this.handleVehicleNumberChange.bind(this)}
-                />
+                <div className="align-items-center justify-content-center d-flex">
+                    <form>
+                    <input
+                        required={true}
+                        type="text"
+                        className="p-2 text-uppercase text-center rounded-pill"
+                        style={{minWidth:'250px'}}
+                        placeholder="ENTER VEHICLE NUMBER"
+                        value={this.state.vehicleNumber}
+                        onChange={this.handleVehicleNumberChange.bind(this)}
+                    />
                     <br/><input
                     required={true}
                     type="text"
                     disabled={this.state.blocked}
-                    className="p-2 text-uppercase text-center rounded-pill"
+                    className="p-2 mt-1 text-uppercase text-center rounded-pill"
                     style={{minWidth:'250px'}}
                     placeholder="ENTER NAME"
                     value={this.state.customerName}
@@ -127,7 +128,8 @@ export default class AllocateSpot extends React.Component{
                         {this.state.lots.map(
                             lot=><option key={`lot_${lot.id}`} value={lot.id}>{lot.name}</option>
                         )}
-                    </select>
+                    </select></form>
+                </div>
                 <div className="d-flex align-items-center justify-content-center">
                     <br/>
                     <div className="row p-2">
