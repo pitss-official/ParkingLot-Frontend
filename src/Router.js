@@ -13,6 +13,7 @@ import AllocateSpot from "./components/AllocateSpot";
 import CheckOutEmployee from "./components/CheckOutEmployee";
 import CheckoutWithSlip from "./components/CheckoutWithSlip";
 import CustomerCheckoutWithSlip from "./components/CustomerCheckoutWithSlip";
+import Bills from "./components/Bills";
 const Router = () => (
     <BrowserRouter>
         <Switch>
@@ -31,6 +32,7 @@ const Router = () => (
             <Route path="/employee/allocateSpot" component={AllocateSpot}/>
             <Route path="/employee/checkoutSpot" component={CheckOutEmployee}/>
             <Route path="/employee/checkoutWithSlip" component={CheckoutWithSlip}/>
+            <Route path="/employee/bills" component={Bills}/>
         </Switch>
     </BrowserRouter>
 )

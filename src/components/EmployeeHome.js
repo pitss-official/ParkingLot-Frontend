@@ -2,8 +2,19 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
-
+import axios from "axios";
 export default class EmployeeHome extends React.Component{
+    url = "http://localhost:5000/api";
+    state={
+        earningsToday:'Loading...',
+        earningsSoFar:'Loading...'
+    }
+    componentDidMount() {
+     axios.get(this.url+'/bill/earnings').then(res=>{
+         this.setState({earningsSoFar:res.data[0].totalAmount,earningsToday:res.data[1].totalAmount})
+     }
+     );
+    }
     render(){
         return(
             <div>
@@ -13,6 +24,10 @@ export default class EmployeeHome extends React.Component{
                     </Link><Link to={{pathname:'/customer/'}}>
                         <button className="btn m-1 btn-primary">Customer Home</button>
                     </Link>
+                </div>
+                <div className="d-flex align-items-center justify-content-center">
+                    <span className="badge">Earnings Total: {this.state.earningsSoFar}</span>
+                    <span className="badge">Earnings Today: {this.state.earningsToday}</span>
                 </div>
                 <div className="container mt-5">
                     <div className="d-flex align-items-center justify-content-center" style={{height:"350px"}}>
@@ -26,6 +41,10 @@ export default class EmployeeHome extends React.Component{
                             <br/>
                             <Link to={{pathname:"/employee/checkoutSpot"}}>
                                 <button className="btn employee-buttons bg-light rounded-pill">Deallocate Spot  <FontAwesomeIcon className="fa-pull-right m-1" icon={faPlus}/></button>
+                            </Link>
+                            <br/>
+                            <Link to={{pathname:"/employee/bills"}}>
+                                <button className="btn employee-buttons bg-light rounded-pill">Bills  <FontAwesomeIcon className="fa-pull-right m-1" icon={faPlus}/></button>
                             </Link>
                             <br/>
                             <Link to={{pathname:"/employee/addCountry"}}>
