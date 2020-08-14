@@ -1,9 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import swal from 'sweetalert2';
+import {Link} from "react-router-dom";
 export default class AddLot extends React.Component{
     url = "http://localhost:5000/api";
     state={
@@ -44,6 +42,21 @@ export default class AddLot extends React.Component{
     }
     render(){
         return(
+            <div>
+                <div className="d-flex align-items-center justify-content-center">
+                    <Link to={{pathname:'/'}}>
+                        <button className="btn m-1 btn-primary">Site Home</button>
+                    </Link>
+                    <Link to={{pathname:'/employee'}}>
+                        <button className="btn m-1 btn-primary">Employee Home</button>
+                    </Link>
+                    <Link to={{pathname:'/employee/allocateSpot'}}>
+                        <button className="btn m-1 btn-primary">Allocate Space</button>
+                    </Link>
+                    <Link to={{pathname:'/employee/checkoutSpot'}}>
+                        <button className="btn m-1 btn-primary">Deallocate Space</button>
+                    </Link>
+                </div>
             <div className="d-flex align-items-center justify-content-center">
                 <br/>
                 <br/>
@@ -88,7 +101,7 @@ export default class AddLot extends React.Component{
                         <button disabled={this.country===0} className="btn btn-success" onClick={()=>{this.post()}}>Create</button>
                     </div>
                 </form>
-            </div>
+            </div></div>
         )
     }
 }

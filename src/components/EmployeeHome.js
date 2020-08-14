@@ -7,6 +7,13 @@ export default class EmployeeHome extends React.Component{
     render(){
         return(
             <div>
+                <div className="d-flex align-items-center justify-content-center">
+                    <Link to={{pathname:'/'}}>
+                        <button className="btn m-1 btn-primary">Site Home</button>
+                    </Link><Link to={{pathname:'/customer/'}}>
+                        <button className="btn m-1 btn-primary">Customer Home</button>
+                    </Link>
+                </div>
                 <div className="container mt-2">
                     <div className="d-flex align-items-center justify-content-center" style={{height:"350px"}}>
                         <div className="card p-2 d-flex align-items-center justify-content-center mt-5" style={{backgroundColor:"transparent"}}>

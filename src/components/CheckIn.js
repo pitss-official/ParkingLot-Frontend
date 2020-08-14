@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {faCar, faBiking} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from 'axios';
@@ -37,6 +37,13 @@ export default class CheckIn extends React.Component{
         }
         return(
             <div>
+                <div className="d-flex align-items-center justify-content-center">
+                    <Link to={{pathname:'/'}}>
+                        <button className="btn m-1 btn-primary">Site Home</button>
+                    </Link><Link to={{pathname:'/customer/'}}>
+                    <button className="btn m-1 btn-primary">Customer Home</button>
+                </Link>
+                </div><br/>
                 <div className="text-center">
                     <h4>Select Slot</h4>
                 </div>
@@ -45,25 +52,25 @@ export default class CheckIn extends React.Component{
                 <br/>
                 <div className="row p-2">
                     {this.state.spots.map(spot=>{
-                        if(spot.isBlocked==1)
+                        if(spot.isBlocked===1)
                             return (
                                 <div className="text-center p-2 m-1 bg-danger rounded" style={
-                                    {width:spot.type==1?'100px':'50px'}
+                                    {width:spot.type===1?'100px':'50px'}
                                 }>
                                     {spot.name}
                                     <br/>
-                                    <FontAwesomeIcon icon={spot.type==1?faCar:faBiking}/>
+                                    <FontAwesomeIcon icon={spot.type===1?faCar:faBiking}/>
                                     <br/>
                                     L:{spot.level}
                                 </div>)
                         else return (
                             <div className="text-center p-2 m-1 bg-success rounded" id={spot.id} style={
-                                {width:spot.type==1?'100px':'50px'}
+                                {width:spot.type===1?'100px':'50px'}
                             } onClick={this.book.bind(this)}
                             >
                                 {spot.name}
                                 <br/>
-                                <FontAwesomeIcon icon={spot.type==1?faCar:faBiking}/>
+                                <FontAwesomeIcon icon={spot.type===1?faCar:faBiking}/>
                                 <br/>
                                 L:{spot.level}
                             </div>

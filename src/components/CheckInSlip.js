@@ -1,6 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import swal from "sweetalert2";
+import {Link} from "react-router-dom";
 
 export default class CheckInSlip extends React.Component{
     componentDidMount() {
@@ -13,6 +13,14 @@ export default class CheckInSlip extends React.Component{
 
     render(){
         return(
+            <div>
+                <div className="d-flex align-items-center justify-content-center">
+                    <Link to={{pathname:'/'}}>
+                        <button className="btn m-1 btn-primary">Site Home</button>
+                    </Link><Link to={{pathname:'/customer/'}}>
+                    <button className="btn m-1 btn-primary">Customer Home</button>
+                </Link>
+                </div>
             <div className="checkin-card">
             <div className="cardWrap">
                 <div className="card cardLeft">
@@ -23,7 +31,7 @@ export default class CheckInSlip extends React.Component{
                     </div>
                     <div className="name">
                         <h2>{this.props.location.state.prev.vehicleNumber}</h2>
-                        <span>{this.props.location.state.prev.vehicleType==0?'Two-Wheeler':'Four-Wheeler'}</span>
+                        <span>{this.props.location.state.prev.vehicleType===0?'Two-Wheeler':'Four-Wheeler'}</span>
                     </div>
 
                 </div>
@@ -33,7 +41,7 @@ export default class CheckInSlip extends React.Component{
                         <h3>{this.props.location.state.bill.id}</h3>
                     </div>
                 </div>
-            </div></div>
+            </div></div></div>
         )
     }
 }

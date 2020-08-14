@@ -84,6 +84,14 @@ export default class CustomerHome extends React.Component{
     render(){
         return(
             <div className="container mt-2">
+                <div className="d-flex align-items-center justify-content-center">
+                    <Link to={{pathname:'/'}}>
+                        <button className="btn m-1 btn-primary">Site Home</button>
+                    </Link>
+                    <Link to={{pathname:'/employee'}}>
+                        <button className="btn m-1 btn-primary">Employee Home</button>
+                    </Link>
+                </div>
                 <div className="d-flex align-items-center justify-content-center" style={{height:"350px"}}>
                     {/*<Link to={{pathname:"/employee/"}} style={{textDecoration:'none'}}>*/}
                     <form action="javascript:">

@@ -1,9 +1,9 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import {faCar, faBiking} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from 'axios';
 import swal from 'sweetalert2';
+import {Link} from "react-router-dom";
 //todo fix links
 export default class CheckOutEmployee extends React.Component{
     url = "http://localhost:5000/api";
@@ -69,7 +69,21 @@ export default class CheckOutEmployee extends React.Component{
         }
         return(
             <div className="">
-
+                <div className="d-flex align-items-center justify-content-center">
+                    <Link to={{pathname:'/'}}>
+                        <button className="btn m-1 btn-primary">Site Home</button>
+                    </Link>
+                    <Link to={{pathname:'/employee'}}>
+                        <button className="btn m-1 btn-primary">Employee Home</button>
+                    </Link>
+                    <Link to={{pathname:'/employee/allocateSpot'}}>
+                        <button className="btn m-1 btn-primary">Allocate Space</button>
+                    </Link>
+                    <Link to={{pathname:'/employee/checkoutSpot'}}>
+                        <button className="btn m-1 btn-primary">Deallocate Space</button>
+                    </Link>
+                </div>
+                <br/>
                 <div className="text-center">
                     <h4>Select Slot</h4>
                 </div>
@@ -115,26 +129,26 @@ export default class CheckOutEmployee extends React.Component{
                     <br/>
                     <div className="row p-2">
                         {this.state.spots.map(spot=>{
-                            if(spot.isBlocked==1)
+                            if(spot.isBlocked===1)
                                 return (
                                     <div className="text-center p-2 m-1 bg-danger rounded" style={
-                                        {width:spot.type==1?'100px':'50px'}
+                                        {width:spot.type===1?'100px':'50px'}
 
                                     } id={spot.id} name={spot.type}  onClick={this.book.bind(this)}>
                                         {spot.name}
                                         <br/>
-                                        <FontAwesomeIcon icon={spot.type==1?faCar:faBiking}/>
+                                        <FontAwesomeIcon icon={spot.type===1?faCar:faBiking}/>
                                         <br/>
                                         L:{spot.level}
                                     </div>)
                             else return (
                                 <div className="text-center p-2 m-1 bg-success rounded" style={
-                                    {width:spot.type==1?'100px':'50px'}
+                                    {width:spot.type===1?'100px':'50px'}
                                 }
                                 >
                                     {spot.name}
                                     <br/>
-                                    <FontAwesomeIcon icon={spot.type==1?faCar:faBiking}/>
+                                    <FontAwesomeIcon icon={spot.type===1?faCar:faBiking}/>
                                     <br/>
                                     L:{spot.level}
                                 </div>
