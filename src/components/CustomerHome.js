@@ -48,11 +48,11 @@ export default class CustomerHome extends React.Component{
     }
     fetchDetails(){
         axios.get(this.url+'/vehicle/'+this.state.vehicleNumber+'/isParked/').then(res=>{
-            if(res.data.status===1){
+            if(res.data.status>0){
                 this.setState({isFresh:false});
             swal.fire({
                 title: 'Do you want to checkout?',
-                text: "You won't be able to revert this!",
+                text: "You won't be auto billed using your stored payment details",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -60,9 +60,9 @@ export default class CustomerHome extends React.Component{
                 confirmButtonText: 'Yes'
             }).then((result) => {
                 if (result.value) {
-                    axios.post(this.url+'/vehicle/checkout/'+this.state.vehicleNumber).then(res=>{
-                        console.log(res.data);
-                    });
+                    axios.post(this.url+'/vehicle/empcheckOut/',{spotID:res.data.status}).then(r=>{
+                        swal.fire("You have been billed for "+r.data.amount,"A bill has been generated for hours: "+r.data.hours)
+                    }).catch(e=>swal.fire("Error",e.response.data.message,"error"));
                 }
             })}
             else{
@@ -91,9 +91,11 @@ export default class CustomerHome extends React.Component{
                     <Link to={{pathname:'/employee'}}>
                         <button className="btn m-1 btn-primary">Employee Home</button>
                     </Link>
+                    <Link to={{pathname:'/customer/checkoutWithSlip'}}>
+                        <button className="btn m-1 btn-primary">Checkout with Slip Number</button>
+                    </Link>
                 </div>
                 <div className="d-flex align-items-center justify-content-center" style={{height:"350px"}}>
-                    {/*<Link to={{pathname:"/employee/"}} style={{textDecoration:'none'}}>*/}
                     <form action="javascript:">
                         <input
                             required={true}
